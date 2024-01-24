@@ -1,0 +1,3 @@
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qgemini seagull rectangles\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QScattering of matter-wave soliton from a narrow barrier: transmission coefficient and induced collapse\\E$"}
+{"rule":"NO_SPACE_CLOSING_QUOTE","sentence":"^\\Q[shortinst]1 Dipartimento di Fisica e Astronomia ”Galileo Galilei”, Università di Padova 2 INFN, Sezione di Padova 3 Padua Quantum Technology Research Center, Università di Padova 4 CNR-INO, Sesto Fiorentino\\E$"}
