@@ -5,9 +5,23 @@
 \usepackage[size=a0,orientation=portrait,scale=1]{beamerposter}
 
 \usetheme{gemini}
-\usecolortheme{seagull}
-\useinnertheme{rectangles}
+% \usecolortheme{seagull}
+% \usetheme{LLT-poster}
+% \usecolortheme{orchid}
+\usecolortheme{mit}
+% \useinnertheme{rectangles}
+\setbeamertemplate{blocks}[shadow=true]
 
+\setbeamercolor{block body}{bg=white}
+\setbeamercolor{block title}{fg=white, bg=red!75!black}
+
+% \setbeamertemplate{blocks}[rounded][shadow]
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage[scaled=1.0]{inconsolata}
+\usepackage[libertine]{newtxmath}
 % ====================
 % Packages
 % ====================
@@ -34,22 +48,25 @@
 
 \newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
 
+
+
+
 % ====================
 % Logo (optional)
 % ====================
 
 % LaTeX logo taken from https://commons.wikimedia.org/wiki/File:LaTeX_logo.svg
-% use this to include logos on the left and/or right side of the header:
+% % use this to include logos on the left and/or right side of the header:
 \logoleft{\includegraphics[height=9cm]{logos/unipd.png}}
 
-% ====================
-% Footer (optional)
-% ====================
+% % ====================
+% % Footer (optional)
+% % ====================
 
 \footercontent{
-  CAPS 2024, Barcelona, Spain \hfill
+  Cold Atoms Workshop 2024, Barcelona, Spain \hfill
   \insertdate \hfill
-  \href{mailto:myemail@exampl.com}{\texttt{francesco.lorenzi.2@phd.unipd.it}}
+  \href{mailto:francesco.lorenzi.2@phd.unipd.it}{\texttt{francesco.lorenzi.2@phd.unipd.it}}
 }
 % (can be left out to remove footer)
 
@@ -76,22 +93,66 @@ transmission coefficient and induced collapse}
 
 \date{January 25, 2024}
 
+\makeatletter
+\setbeamertemplate{headline}
+{
+  \begin{beamercolorbox}{headline}
+    \begin{columns}
+      \begin{column}{\maxlogowidth}
+        \vskip5ex
+        \hspace{2cm}
+        \ifdefined\insertlogoleft
+        \vspace*{\fill}
+        \hspace{10ex}
+        \raggedright
+        \insertlogoleft
+        \vspace*{\fill}
+        \else\fi
+      \end{column}
+      \begin{column}{\dimexpr\paperwidth-\maxlogowidth-\maxlogowidth}
+        \usebeamerfont{headline}
+        \centering
+        \vskip3ex
+%        \centering
+        {\usebeamerfont{headline title}\usebeamercolor[fg]{headline title}\inserttitle\\[0.5ex]}
+        {\usebeamerfont{headline author}\usebeamercolor[fg]{headline author}\insertauthor\\[1ex]}
+        {\usebeamerfont{headline institute}\usebeamercolor[fg]{headline institute}\insertinstitute\\[1ex]}
+      \end{column}
+      \begin{column}{\maxlogowidth}
+        \vskip5ex
+        \ifdefined\insertlogoright
+        \vspace*{\fill}
+        \raggedleft
+        \insertlogoright
+        \hspace{10ex}
+        \vspace*{\fill}
+        \else\fi
+      \end{column}
+    \end{columns}
+    \vspace{5ex}
+    \ifbeamercolorempty[bg]{headline rule}{}{
+      \begin{beamercolorbox}[wd=\paperwidth,colsep=0.5ex]{headline rule}\end{beamercolorbox}
+    }
+  \end{beamercolorbox}
+}
+\makeatother
+
 %%% DOCUMENT
 \begin{document}
 \begin{frame}[t]
-\vspace{-1.5cm}
+\vspace{-1.2cm}
   %%% INTRO BLOCK
   \begin{columns}[t]
   \begin{column}{2\colwidth+\sepwidth}
-  \begin{block}{Introduction}
+  \begin{block}{\textsc{Introduction}}
     \begin{minipage}{30cm}
       We consider an ultracold Bose gas trapped in a \textbf{quasi one-dimensional} setting.
-      \begin{itemize}
+      \begin{enumerate}
         \item  By using the three-dimensional Gross-Pitaevskii equation, we numerically obtain the dynamics of the collision of a matter-wave soliton with a \textbf{narrow potential barrier}.
         \item We determine how the \textbf{transmission coefficient} depends on the soliton impact velocity and the barrier height [3-5].
-        \item We also obtain the regions of parameters where there is the \textbf{collapse} of the bright soliton induced by the collision.
+        \item The regions of parameters where there is the \textbf{collapse} of the bright soliton induced by the collision have been obtained.
         \item We compare the three-dimensional results with the ones obtained by \textbf{three different} one-dimensional nonlinear Schrödinger equations [2].
-      \end{itemize}
+      \end{enumerate}
     \end{minipage}\hspace{1cm}%
     \begin{minipage}{20cm}
       \begin{figure}
@@ -106,7 +167,7 @@ transmission coefficient and induced collapse}
         U(x, y, z) = \frac{1}{2}m\omega_\perp^2 (y^2+z^2) + V(x; \ b ),
       \end{equation}
       \begin{equation}
-        V(x; \ b) = b \ \exp[-\frac{x^2}{2 w^2}].
+        V(x; \ b) = b \ \exp\left[-\frac{x^2}{2 w^2}\right].
       \end{equation}
     \end{minipage}
     
@@ -122,7 +183,7 @@ transmission coefficient and induced collapse}
     \begin{column}{\colwidth}
       
       %%% COLLISION
-      \begin{block}{Dynamics at the collision}
+      \begin{block}{\textsc{Dynamics at the collision}}
         When a one-dimensional soliton impinge on a narrow barrier, the transmission coefficient $T$ is expected to be a \textbf{discontinuous function} of $v$, the impinging velocity, and $b$, the barrier energy, for sufficiently low values of the parameters. Moreover, for high values of velocity and barrier, \textbf{collapse can be induced by the collision} event [3]. This can be related to the transverse width reducing to zero.  
         \begin{figure}
           \subfloat[Axial density]{%
@@ -135,7 +196,7 @@ transmission coefficient and induced collapse}
       \end{block}
 
       %%% REDUCTION
-      \begin{exampleblock}{Dimensional reduction strategies for the Gross-Pitaevskii equation}{}
+      \begin{block}{\textsc{Dimensional reduction strategies for the Gross-Pitaevskii equation}}{}
         
         The Gross-Pitaevskii Lagrangian in 3D is 
         \begin{equation}\label{eq:3dlagrangian}
@@ -159,19 +220,19 @@ transmission coefficient and induced collapse}
             \phi(y, z, \sigma(x, t)) = \dfrac{1}{\sqrt{\pi} \sigma(x, t)} \exp\left[-\frac{y^2+z^2}{2\sigma(x, t)^2}\right]
         \end{equation}
         By considering the corresponding Euler-Lagrange equations, that are computed for $f$ and $\sigma$, we obtain a set of coupled PDE and ODE.
-      \end{exampleblock}
+      \end{block}
 
-      \begin{block}{One-dimensional effective equations}
+      \begin{block}{\textsc{One-dimensional effective equations}}
         The simplest dimensional reduction from ansatz~(\ref{eq:1dansats})
         \begin{equation}
-          \text{GPE:} \qquad i\hbar \frac{\partial}{\partial t} f = \left[-\dfrac{\hbar^2}{2m} \frac{\partial}{\partial x}^2  + V + \hbar\omega_\perp+ \dfrac{N-1}{2\pi \sigma^2} g|f|^2 \right]
+          \text{GPE:} \qquad i\hbar \frac{\partial}{\partial t} f = \left[-\dfrac{\hbar^2}{2m} \frac{\partial}{\partial x}^2  + V + \hbar\omega_\perp+ \dfrac{N-1}{2\pi \sigma^2} g|f|^2 \right]f
         \end{equation}
         By using instead ansatz~(\ref{eq:npseansatz})
         \begin{equation}
           \text{NPSE+:}\left\{\begin{split}
-              &      i \hbar \frac{\partial}{\partial t} f = \bigg[- \frac{\hbar^2}{2 m} \frac{\partial^2}{\partial x^2} + V + \frac{\hbar^2}{2m} \frac{1}{\sigma^2}\left(1+ \left(\frac{\partial}{\partial x} \sigma\right)^2 \right) +\frac{m\omega_\perp^2}{2}\sigma^2 + \frac{2 \hbar^2 a_s (N-1)}{m \sigma^2}|f|^2 \bigg], \\
+              &      i \hbar \frac{\partial}{\partial t} f = \bigg[- \frac{\hbar^2}{2 m} \frac{\partial^2}{\partial x^2} + V + \frac{\hbar^2}{2m} \frac{1}{\sigma^2}\left(1+ \left(\frac{\partial}{\partial x} \sigma\right)^2 \right) +\frac{m\omega_\perp^2}{2}\sigma^2 + \frac{2 \hbar^2 a_s (N-1)}{m \sigma^2}|f|^2 \bigg]f, \\
           &\sigma^4 - l_\perp^4\left[1 + 2a_s{ (N-1)}|f|^2\right]
-          +l_\perp^4\left[\sigma \frac{\partial^2}{\partial x^2} \sigma -\left(\frac{\partial}{\partial x}\sigma\right)^2 +\sigma \frac{\partial}{\partial x}\sigma \frac{1}{|f|^2}\frac{\partial}{\partial x} |f|^2 \right] = 0.
+          +l_\perp^4\left[\sigma \frac{\partial^2}{\partial x^2} \sigma -\left(\frac{\partial}{\partial x}\sigma\right)^2 +\sigma \frac{\partial}{\partial x}\sigma \frac{1}{|f|^2}\frac{\partial}{\partial x} |f|^2 \right] = 0,
         \end{split} \right.
         \end{equation}
         and approximating $\frac{\partial \sigma}{\partial x} \approx 0$, 
@@ -183,7 +244,7 @@ transmission coefficient and induced collapse}
         \end{equation} 
 
       \end{block}
-      \begin{block}{Soliton-like solutions}
+      \begin{block}{\textsc{Soliton-like solutions}}
           \begin{figure}
             \subfloat[Solitonic solution]{%
             {\includegraphics[width=.40\linewidth]{figures/fig1.pdf}}%
@@ -192,7 +253,7 @@ transmission coefficient and induced collapse}
             {\includegraphics[width=.40\linewidth]{figures/fig2.pdf}}%
           }
         \end{figure}
-        \begin{figure}x
+        \begin{figure}
             \subfloat[Transverse width]{%
             {\includegraphics[width=.40\linewidth]{figures/fig3.pdf}}%
             }\hspace{1cm}
@@ -208,16 +269,16 @@ transmission coefficient and induced collapse}
     \begin{column}{\colwidth}
 
       %%% NUMERICAL
-      \begin{block}{Numerical methods}
+      \begin{block}{\textsc{Numerical methods}}
         % The time-marching scheme we use for all the simulations is the SSFM, adopting Strang splitting of the nonlinear and linear part of the evolution operator. The SSFM is well-known to be accurate to the second order in time and to every order in space, thus being highly efficient in the spatial discretization. The drawback of the method - or the feature, depending on the point of
         % view - is to natively implement PBC. The implementation of absorption boundaries is still possible but not straightforward.
         We use a \textbf{split-step Fourier method} with Strang splitting, that naturally implements periodic boundaries conditions. We assume the field to be localized away from the boundary in order to neglect this problem. The time step in both setups is chosen to be $h_t = 0.01$. These parameters have been proven to give a total truncation error in the $L_\infty$ norm of the order of $10^{-4}$.
         The ground state solutions are computed using an \textbf{imaginary-time propagation} method. 
         The natural units for the problem are: \textbf{energy} $\longrightarrow$ $\hbar\omega_\perp$, \textbf{time}  $\rightarrow$ $\omega_\perp^{-1}$, \textbf{length} $\longrightarrow$ $l_\perp$.
-        \begin{itemize}
+        \begin{enumerate}
             \item 1D simulations: length of $L = 40$, with a grid of $N = 512$ points.
             \item  3D simulations: lengths of $(L_x, L_y, L_z) = (40, 10, 10)$, grid of $(N_x, N_y, N_z) = (512, 40, 40)$ points.
-        \end{itemize}
+        \end{enumerate}
         The sistem of \textbf{coupled PDE and ODE} in the NPSE+ is solved iteratively by means of a collocation method for the boundary value problem for $\sigma$.
 
         Collapse threshold is set to a probability per point of $0.3$. In the NPSE case, collapse is given by the consistency conditions
@@ -227,26 +288,24 @@ transmission coefficient and induced collapse}
         
       \end{block}
 
-
-      \begin{block}{Results}
+      \begin{block}{\textsc{Results}}
         \begin{figure}
           \centering
-          \subfloat[3D-GPE]{%
-            {\includegraphics[width=.40\linewidth]{figures/tiles_G3.pdf}}%
-          }%
-          \subfloat[NPSE+]{%
-            {\includegraphics[width=.40\linewidth]{figures/Np.pdf}}%
-          }
-          
-          \subfloat[NPSE]{%
-            {\includegraphics[width=.40\linewidth]{figures/tiles_N-1.pdf}}%
-          }
-          \subfloat[1D-GPE]{%
-            {\includegraphics[width=.40\linewidth]{figures/tiles_G1.pdf}}%
-          }
+          \includegraphics[width=.50\linewidth]{figures/tiles_G3.pdf}%
           \caption{Transmission coefficient. $v$ is in units of $\sqrt{\hbar \omega_\perp / m}$, $b$ is in units of $\hbar \omega_\perp$.}
           \label{fig:heatmap}
         \end{figure}
+        The three-dimensional findings indicate that the full dynamics features
+        \begin{enumerate}
+          \item \textbf{Discontinuity} of $T$ in the regime of small $v$ and $b$. 
+          \item \textbf{Barrier-induced collapse} for high $v$ and $b$, with a non-trivial dependence on the parameters.
+        \end{enumerate}
+        By using the NPSE and NPSE+, we noticed 
+        \begin{enumerate}
+          \item The NPSE indicates \textbf{collapse} for smaller values of $v$ and $b$. Therefore, it cannot reliably predict $T$ in these regimes.
+          \item The NPSE+ does not show collapse in the region we investigated, but it consistently gives accurate values of the \textbf{transverse width} in the non-collapsing region.
+        \end{enumerate}
+        \vspace{1cm}
         \begin{figure}
             \subfloat[$v=0.6$]{%
             {\includegraphics[width=.40\linewidth]{figures/compare_lines_1.pdf}}%
@@ -258,19 +317,19 @@ transmission coefficient and induced collapse}
         \end{figure}
       \end{block}
 
-      \begin{block}{Summary}
-        We investigated how the choice of \textbf{dimensional reduction} impacts the description of some features of the process, namely the transmission coefficient and the onset of barrier-induced collapse, also using the familiar one-dimensional Gross-Pitaevskii. We first reviewed the \textbf{ground state properties} given by all the schemes, highlighting the role of the variational transverse width. Then we compared the scattering properties: our results show that by using the NPSE in a regime of high barrier energy and high velocity it \textbf{fails to describe the 3D dynamics} due to the vanishing of the transverse width of the solution. Our main result is that by adopting a slight modification of the transverse width using the \textbf{true variational} solution with the NPSE ansatz, the method has a good agreement with the 3D-GPE in the noncollapsing region.
+      \begin{block}{\textsc{Summary}}
+        We investigated how the choice of \textbf{dimensional reduction} impacts the description of some features of the process, namely the transmission coefficient and the onset of barrier-induced collapse, also using the familiar one-dimensional Gross-Pitaevskii. We first reviewed the \textbf{ground state properties} given by all the schemes, highlighting the role of the variational transverse width. Then we compared the scattering properties: our results show that by using the NPSE in a regime of high barrier energy and high velocity it \textbf{fails to describe the 3D dynamics} due to the vanishing of the transverse width of the solution. Our main result is that by adopting a slight modification of the NPSE, by using the \textbf{true variational} solution with the NPSE ansatz, the effective equation  has a good agreement with the 3D-GPE transmission coefficient in the non-collapsing region, but fails to accurately describe the collapse event.
       \end{block}
-      \begin{block}{References}
+      \begin{block}{\textsc{References}}
         \printbibliography[heading=none]          
         \begin{enumerate}
-            \item L. Khaykovich,and B. A. Malomed, Phys. Rev. A \textbf{74}, 023607 (2006)
+            \item L. Khaykovich, and B. A. Malomed, Phys. Rev. A \textbf{74}, 023607 (2006)
             \item L. Salasnich, A. Parola, and L. Reatto, Phys. Rev. A \textbf{65}, 043614 (2002)
             \item J. Cuevas, P. G. Kevrekidis, B. A. Malomed, P. Dyke, and R. G. Hulet, New J. Phys. \textbf{15}, 063006 (2013)
             \item J. L. Helm, S. J. Rooney, C. Weiss, and S. A. Gardiner, Phys. Rev. A \textbf{89}, 033610 (2014)
             \item C.-H. Wang, T.-M. Hong, R.-K. Lee, and D.-W. Wang, Opt. Expr. \textbf{20}, 22675–22682 (2012)
             \item F. Lorenzi, L. Salasnich, arxiv:2310.02018 (2023).
-            \item F. Lorenzi, SolitonDynamics.jl \textit{GitHub repository} \texttt{github.com/lorenzifrancesco/CondensateDynamics.jl} (2023)
+            \item F. Lorenzi, SolitonDynamics.jl \textit{GitHub repository} \texttt{github.com/lorenzifrancesco/SolitonDynamics.jl} (2023)
         \end{enumerate}
       \end{block}
 
